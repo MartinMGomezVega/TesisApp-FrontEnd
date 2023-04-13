@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUsers, faComment} from "@fortawesome/free-solid-svg-icons"
+import { faSearch, faUsers, faComment, faBrain} from "@fortawesome/free-solid-svg-icons";
 import BasicModal from "../../components/Modal/BasicModal/BasicModal";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import SignInForm from "../../components/SignInForm";
-import LogoApp from "../../assets/png/logo.png";
-import LogoWhiteApp from "../../assets/png/logo-white.png";
+import LogoValkIALow from "../../assets/png/Valkia-lowV2.png";
+import LogoValkIA from "../../assets/png/ROBOT-APP-imagen.png";
+import LogoHead from "../../assets/png/logo-head.png";
 
 import "./SignInSignUp.scss"
 
@@ -41,9 +42,10 @@ export default function SignInSingUp(props){
 function LeftComponent() {
     return (
       <Col className="signin-signup__left" xs={6}>
-        <img src={LogoApp} alt="App" />
+        <img src={LogoValkIA} alt="App" />
         <div>
-          <h2>
+          {
+            /* <h2>
             <FontAwesomeIcon icon={faSearch} />
             Sigue lo que te interesa.
           </h2>
@@ -55,6 +57,11 @@ function LeftComponent() {
             <FontAwesomeIcon icon={faComment} />
             Únete a la conversación.
           </h2>
+          <h2>
+            <FontAwesomeIcon icon={faBrain} />
+            Descubre el poder de las IA del momento.
+          </h2> 
+          */}
         </div>
       </Col>
     );
@@ -66,9 +73,10 @@ function RightComponent(props) {
   return (
       <Col className="signin-signup__right" xs= {6}>
           <div>
-              <img src={LogoWhiteApp} alt="App"/>
-              <h2>Mira lo que esta pasando en el mundo en este momento</h2>
-              <h3>Únete a App en este momento.</h3>
+              <img src={LogoHead} alt="App"/>
+              <h1>ValkirIA</h1>
+              <h2>Mira lo que esta pasando en el mundo</h2>
+              {/* <h3>Únete a ValkIA</h3> */}
               <Button variant="primary" onClick={() => openModal(<SignUpForm setShowModal={setShowModal}/>)}> Registrese</Button>
               <Button variant="outline-primary" onClick={() => openModal(<SignInForm setRefreshCheckLogin={setRefreshCheckLogin} />)}>Iniciar sesión</Button>
           </div>

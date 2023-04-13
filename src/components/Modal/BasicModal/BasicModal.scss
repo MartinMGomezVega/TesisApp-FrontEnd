@@ -12,7 +12,11 @@
         margin: 0 auto;
 
         img {
-          width: 50px;
+          width: 10%;
+          // new
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
         }
       }
     }
