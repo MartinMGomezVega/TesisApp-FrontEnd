@@ -4,6 +4,9 @@ import { values, size } from 'lodash';
 import { toast } from "react-toastify";
 import { isEmailValid } from '../../utils/validations';
 import { signInAPI, setTokenAPI } from '../../API/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 
 import "./SignInForm.scss";
 
@@ -11,6 +14,7 @@ export default function SignInForm(props) {
     const { setRefreshCheckLogin } = props;
     const [formData, setFormData] = useState(initialFormValue());
     const [signInLoading, setSignInLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // Mostrar o ocultar la contraseña
 
     const onSubmit = e => {
         e.preventDefault();
@@ -56,6 +60,12 @@ export default function SignInForm(props) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
+    // Mostrar o ocultar la contraseña
+    const handleTogglePassword = () => {
+        console.log(showPassword);
+        setShowPassword(!showPassword);
+    };
+
     return (
         <div className="sign-in-form">
             <h2>Iniciar sesión</h2>
@@ -64,7 +74,12 @@ export default function SignInForm(props) {
                     <Form.Control type="email" name="email" placeholder="Correo electrónico" defaultValue={formData.email} />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="password" name="password" placeholder="Contraseña" defaultValue={formData.password} />
+                    {/* <Form.Control type="password" name="password" placeholder="Contraseña" defaultValue={formData.password} /> */}
+                    <Form.Control type={showPassword ? 'text' : 'password'} name="password" placeholder="Contraseña" defaultValue={formData.password} />
+                    <Button variant="password" className={`eye-button ${showPassword ? 'active' : ''}`} onClick={handleTogglePassword}>
+                        <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                    </Button>
+
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     {!signInLoading ? "Iniciar sesión" : <Spinner animation="border" />}

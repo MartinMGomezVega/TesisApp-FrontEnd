@@ -41,6 +41,30 @@ code {
   }
 }
 
+.btn.btn-password {
+  position: absolute;
+  top: 115px;  
+  right: 55px;
+  background-color: transparent !important;
+  border-radius: 100%;
+  cursor: pointer;
+  color: #fff;
+  display: inline-block;
+  margin:0 5px;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  padding: 0 5px;
+  line-height: 20px;
+  font-size: 20px;
+  border:none;
+}
+.btn.btn-password:hover{
+  background-color: #33415c !important;
+  border:none;
+  border-radius: 100%;
+}
+
 
 input.form-control,
 textarea.form-control {
