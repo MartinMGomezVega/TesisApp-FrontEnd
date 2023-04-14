@@ -24,16 +24,20 @@ code {
 .btn.btn-primary {
   background-color: $primary;
   border-color: $primary;
+  color: #fff;
   &:hover {
-    background-color: rgba(26, 145, 218, 1)
+    background-color: #0466c8 !important;
+    border-color: #0466c8;
   }
 }
 
 .btn.btn-outline-primary {
-  border-color: $border-primary;
-  color: $primary;
+  border-color: #979dac;
+  background-color: #979dac;
+  color: #fff;
   &:hover, &:active, &:focus {
-    background-color: rgba(29, 261, 241, 0.1) !important;
+    background-color: #5c677d !important;
+    border-color: #5c677d;
   }
 }
 

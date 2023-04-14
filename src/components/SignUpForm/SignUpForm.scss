@@ -2,8 +2,30 @@
 
 .sign-up-form {
   h2 {
+    font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
     font-weight: bold;
-    padding-bottom: 30px;
+    font-size: 35px;
+    text-align: center;
+  }
+
+  h3{
+    font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+    font-size: 15px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .form-control{
+    background-color: $primary-dark;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1.5px solid $primary;
+    color: #fff !important;
+    margin: 15px 0px 15px 0px;
+  }
+
+  .form-control:hover{
+    border-bottom: 4px solid $primary;
   }
 
   .form-group {

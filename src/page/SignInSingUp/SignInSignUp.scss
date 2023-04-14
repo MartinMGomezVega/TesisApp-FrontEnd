@@ -4,14 +4,18 @@
   &__left {
     overflow: hidden;
     min-height: 100vh;
-    background-color: $primary-light;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: $primary-light;
+    background-image: url("../../assets/png/fondo-texturado.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     img {
       position:absolute;
-      width: 35%;
+      width: 38%;
       justify-content: center;
       display: flex;
       align-items: center;
@@ -21,7 +25,6 @@
 
     div {
       z-index: 1;
-      // margin-top: -40%;
 
       h2 {
         display: flex;
@@ -49,9 +52,8 @@
     background-color: $primary-dark;
 
     div {
-      z-index: 2;
       width: 500px;
-      margin: 0 auto;
+      margin: auto;
       justify-content: center;
 
       img {
@@ -62,20 +64,28 @@
         display: block;
       }
       
-      /*
-      h1 {
-         text-align: left; 
-         font-family: Arial Black; 
-         font-weight: bold;
-         font-size: 100px;
-         color: #fff;
-         text-shadow: 0 1px 0 #afadad, 0 2px 0 #afadad, 0 3px 0 #3d3b3b, 0 4px 0 #464343, 0 5px 0 #afadad, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
+      text {
+        filter: url(#filter);
+        fill: $primary;
+        font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+        font-size: 140px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
-      */
-
+      svg{
+        margin-bottom: 40px;
+        width: 100%;
+        height:100px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        justify-content: center;
+        display: block;
+      }
+      
       h1{
-        font-family: Arial Black; 
-        text-align: left;
+        font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+        text-align: center;
         font-weight: bold;
         font-size: 100px; 
         color: #1278BF; 
@@ -83,15 +93,18 @@
       }
 
       h2 {
-        font-weight: bold;
-        font-size: 40px;
-        margin-bottom: 70px;
+        // font-weight: bold;
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
       }
 
       h3 {
         font-weight: bold;
         font-size: 20px;
         margin-bottom: 30px;
+        font-family: 'Share Tech Mono', sans-serif;
       }
 
       button {
@@ -100,6 +113,7 @@
         border-radius: 50px;
         font-size: 20px;
         font-weight: bold;
+        font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
         padding: 10px 0;
 
         &:first-of-type {
@@ -108,4 +122,6 @@
       }
     }
   }
+  
 }
+

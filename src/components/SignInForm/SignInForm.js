@@ -58,7 +58,7 @@ export default function SignInForm(props) {
 
     return (
         <div className="sign-in-form">
-            <h2>Entrar</h2>
+            <h2>Iniciar sesión</h2>
             <form onSubmit={onSubmit} onChange={onChange}>
                 <Form.Group>
                     <Form.Control type="email" name="email" placeholder="Correo electrónico" defaultValue={formData.email} />

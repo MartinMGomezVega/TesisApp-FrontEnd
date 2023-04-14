@@ -67,7 +67,8 @@ export default function SignUpForm(props) {
 
     return (
         <div className="sign-up-form">
-            <h2>Crea tu cuenta</h2>
+            <h2>Registrate</h2>
+            <h3>Es rápido y fácil.</h3>
             <Form onSubmit={onSubmit} onChange={onChange}>
                 <Form.Group>
                     <Row>
@@ -96,7 +97,7 @@ export default function SignUpForm(props) {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    {!signUpLoading ? "Registrese" : <Spinner animation="border" />}
+                    {!signUpLoading ? "Registrate" : <Spinner animation="border" />}
                 </Button>
             </Form>
         </div>
