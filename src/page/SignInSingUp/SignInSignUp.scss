@@ -68,9 +68,10 @@
         filter: url(#filter);
         fill: $primary;
         font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
-        font-size: 140px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        font-size: 850%;
+        // -webkit-font-smoothing: antialiased;
+        // -moz-osx-font-smoothing: grayscale;
+        // display: ;
       }
       svg{
         margin-bottom: 40px;
@@ -80,7 +81,15 @@
         margin-right: auto;
         text-align: center;
         justify-content: center;
-        display: block;
+        // display: block;
+      }
+
+      @media (max-width: 768px) {
+        /* Estilos para dispositivos móviles */
+        text {
+          font-size: 450%;
+          align-items: center;
+        }
       }
       
       h1{
@@ -122,6 +131,7 @@
       }
     }
   }
-  
 }
+
+
 
