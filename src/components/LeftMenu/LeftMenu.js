@@ -41,13 +41,14 @@ export default function LeftMenu(props) {
                 <FontAwesomeIcon icon={faUser} /> Perfil
             </Link>
 
-            {/* Cerrar sesion */}
-            <Link to="" onClick={logout}>
-                <FontAwesomeIcon icon={faPowerOff} /> Cerrar sesión
-            </Link>
-
             <Button onClick={() => setShowModal(true)}>Publicar</Button>
             <PublicationModal show={showModal} setShow={setShowModal} />
+
+            {/* Cerrar sesion */}
+            <Link className='logout' to="" onClick={logout}>
+                <FontAwesomeIcon icon={faPowerOff} />
+            </Link>
+        
         </div>
     )
 }

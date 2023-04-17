@@ -39,4 +39,32 @@
     margin-top: 30px;
     font-weight: bold;
   }
+
+  .logout{
+    padding: 7px 0 3px;
+    text-align: center;
+    width: 10%;
+    // width: 223px;
+    display: block;
+    position: fixed;
+    clear: both;
+    bottom: 0;
+    color: #fff;
+
+    svg {
+      position: absolute;
+      padding: 5px 10px;
+      line-height: 20px;
+      font-size: 20px;
+      border-radius:0px;
+      transition: opacity 0.5s ease;
+    }
+    svg:hover{
+      // background-color: rgba(21, 24, 36, 0.911);
+      // border-radius:0px;
+      border-radius: 100%;
+      color: red;
+      opacity: 0.7; /* Establece la opacidad a 0.7 en el hover */
+    }
+  }
 }
