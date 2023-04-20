@@ -19,6 +19,7 @@
     font-weight: bold;
     margin-bottom: 30px;
     text-decoration: none;
+    padding: 1%;
 
 
     &:hover {
@@ -43,28 +44,23 @@
   }
 
   .logout{
-    padding: 7px 0 10px;
+    padding: 0%;
     text-align: center;
     width: 10%;
-    // width: 223px;
     display: block;
     position: fixed;
     clear: both;
-    bottom: 0;
+    bottom: 0px;
     color: #fff;
 
-    svg {
-      position: absolute;
-      padding: 5px 10px;
-      line-height: 20px;
+    a {
       font-size: 20px;
-      border-radius:0px;
-      transition: opacity 0.5s ease;
+      color: $font-light;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-decoration: none;
     }
-    svg:hover{
-      // background-color: rgba(21, 24, 36, 0.911);
-      // border-radius:0px;
-      border-radius: 100%;
+    &:hover{
       color: red;
       opacity: 0.7; /* Establece la opacidad a 0.7 en el hover */
     }

@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faHome, faUser, faUsers, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faHouseChimney, faUser, faUsers, faPowerOff, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import PublicationModal from '../Modal/PublicationModal/PublicationModal';
 import { logoutAPI } from '../../API/auth';
 import useAuth from '../../hooks/useAuth';
-
-import LogoWhiteApp from "../../assets/png/logo-white.png";
 
 import LogoValkIALow from "../../assets/png/Valkia-lowV2.png"; // Valki acostada
 import LogoHead from "../../assets/png/logo-head.png";
@@ -31,7 +29,7 @@ export default function LeftMenu(props) {
             
             {/* Inicio */}
             <Link to="/">
-                <FontAwesomeIcon icon={faHome} /> Inicio
+                <FontAwesomeIcon icon={faHouseChimney} /> Inicio
             </Link>
 
             {/* Usuarios */}
@@ -50,7 +48,7 @@ export default function LeftMenu(props) {
 
             {/* Cerrar sesion */}
             <Link className='logout' to="" onClick={logout}>
-                <FontAwesomeIcon icon={faPowerOff} />
+                <FontAwesomeIcon icon={faArrowRightFromBracket} /> Salir
             </Link>
         
         </div>
