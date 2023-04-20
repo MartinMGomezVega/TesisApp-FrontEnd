@@ -1,26 +1,38 @@
 @import "../../scss/index.scss";
 
 .error404 {
-  min-height: 100vh;
+  // min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  
 
   img {
-    &:first-of-type {
-      width: 150px;
-      margin-bottom: 30px;
-    }
-    &:last-of-type {
-      width: 600px;
-    }
+    width: 50%;
+    margin-bottom: 10px;
+    // &:first-of-type {
+    //   width: 150px;
+    //   margin-bottom: 30px;
+    // }
+    // &:last-of-type {
+    //   width: 600px;
+    // }
   }
 
   a {
     margin-top: 30px;
     color: $font-light;
-    font-size: 30px;
+    font-size: 125%;
     font-weight: bold;
+    margin-bottom: 30px;
+    text-decoration: none;
+    font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+
+    &:hover {
+      color: $primary;
+    }
   }
+
+    
 }

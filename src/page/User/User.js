@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom'; // Obtener los datos de la URL
+import { Redirect, withRouter } from 'react-router-dom'; // Obtener los datos de la URL
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth'; // Obtener el usuario actual que se logeo
 import BasicLayout from "../../layout/BasicLayout";
@@ -21,19 +21,25 @@ function User(props) {
   const { params } = match; // obtener los datos del user
   const loggedUser = useAuth();
 
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
   // console.log(publications);
 
-  // Se ejecuta siempre que params cambien
+  // Obtener el usuario con el ID
   useEffect(() => {
     getUserAPI(params.id)
       .then((response) => {
+        // console.log("Response test: "+response);
         if (!response) toast.error("El usuario que has visitado no existe");
         setUser(response);
+        if(response == null){
+          setShouldRedirect(true);
+        }
       })
       .catch(() => {
-        toast.error("El usuario que has visitado no existe");
+        toast.error("Error, el usuario que has visitado no existe");
       });
-  }, [params]); // Se actualiza siempre se que cambie de usuario
+  }, [params]); // Se actualiza siempre que se cambie de usuario
 
   // Obtener todas las publicaciones
   useEffect(() => {
@@ -62,31 +68,31 @@ function User(props) {
   }
 
   return (
-    <BasicLayout className="user" setRefreshCheckLogin={setRefreshCheckLogin}>
-      <div className='user__title'>
-        <h2>
-          {/* si el usuario existe, muestra el nombre */}
-          {user ? `${user.name} ${user.surname}` : "Este usuario no existe"}
-        </h2>
-      </div>
-      
-      <BannerAvatar user={user} loggedUser={loggedUser} />
-      
-      <InfoUser user={user}/>
-
-      {/* Listar las publicaciones */}
-      <div className='user__publications'>
-        <h3>Publicaciones</h3>
-        {publications && <ListPublications publications={publications}/>}
-        <Button onClick={moreData}>
-          {!loadingPublications ? (
-            loadingPublications !== 0 && 'Obtener más publicaciones'
-          ): (
-            <Spinner as="span" animation="grow" size="sm" role="status" arian-hidden="true" />
-          )}
-        </Button>
-      </div>
-    </BasicLayout>
+    <>
+      {shouldRedirect && <Redirect to="/Error" />}
+      <BasicLayout className="user" setRefreshCheckLogin={setRefreshCheckLogin}>
+        <div className='user__title'>
+          <h2>
+            {/* si el usuario existe, muestra el nombre */}
+            {user ? `${user.name} ${user.surname}` : "Este usuario no existe"}
+          </h2>
+        </div>
+        <BannerAvatar user={user} loggedUser={loggedUser} />
+        <InfoUser user={user}/>
+        {/* Listar las publicaciones */}
+        <div className='user__publications'>
+          <h3>Publicaciones</h3>
+          {publications && <ListPublications publications={publications}/>}
+          <Button onClick={moreData}>
+            {!loadingPublications ? (
+              loadingPublications !== 0 && 'Obtener más publicaciones'
+            ): (
+              <Spinner as="span" animation="grow" size="sm" role="status" arian-hidden="true" />
+            )}
+          </Button>
+        </div>
+      </BasicLayout>
+    </>
   );
 }
 
