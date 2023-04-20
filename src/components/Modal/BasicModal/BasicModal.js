@@ -18,7 +18,7 @@ export default function BasicModal(props) {
     >
       <Modal.Header>
         <Modal.Title>
-          <img src={LogoValkIALow} alt="App" />
+          {/* <img src={LogoValkIALow} alt="App" /> */}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>

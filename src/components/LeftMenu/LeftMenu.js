@@ -6,7 +6,11 @@ import { faHome, faUser, faUsers, faPowerOff } from '@fortawesome/free-solid-svg
 import PublicationModal from '../Modal/PublicationModal/PublicationModal';
 import { logoutAPI } from '../../API/auth';
 import useAuth from '../../hooks/useAuth';
+
 import LogoWhiteApp from "../../assets/png/logo-white.png";
+
+import LogoValkIALow from "../../assets/png/Valkia-lowV2.png"; // Valki acostada
+import LogoHead from "../../assets/png/logo-head.png";
 
 import "./LeftMenu.scss";
 
@@ -23,7 +27,7 @@ export default function LeftMenu(props) {
     return (
         <div className='left-menu'>
             {/* Logo de la app */}
-            <img className='logo' src={LogoWhiteApp} alt ='app' />
+            <img className='logo' src={LogoValkIALow} alt ='app' />
             
             {/* Inicio */}
             <Link to="/">

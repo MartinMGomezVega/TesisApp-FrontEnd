@@ -25,7 +25,7 @@ export default function UserByUser(props) {
                 className="mr-3"
                 src={
                 userInfo?.avatar
-                    ? `${API_HOST}/obtenerAvatar?id=${user.id}`
+                    ? `${API_HOST}/getAvatar?id=${user.id}`
                     : AvatarNotFound
                 }
                 alt={`${user.nombre} ${user.apellidos}`}

@@ -62,7 +62,7 @@ export default function SignInForm(props) {
 
     // Mostrar o ocultar la contraseña
     const handleTogglePassword = () => {
-        console.log(showPassword);
+        // console.log(showPassword);
         setShowPassword(!showPassword);
     };
 
