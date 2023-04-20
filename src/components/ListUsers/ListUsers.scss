@@ -2,6 +2,14 @@
 
 .list-users {
   padding: 0;
+  font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+
+  h2{
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20px;
+  }
   
   .card {
     background-color:$background-grey-dark;

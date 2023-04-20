@@ -1,6 +1,7 @@
 @import "../../scss/index.scss";
 
 .signin-signup {
+  font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
   &__left {
     overflow: hidden;
     min-height: 100vh;
@@ -67,7 +68,7 @@
       text {
         filter: url(#filter);
         fill: $primary;
-        font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+        // font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
         font-size: 850%;
         // -webkit-font-smoothing: antialiased;
         // -moz-osx-font-smoothing: grayscale;
