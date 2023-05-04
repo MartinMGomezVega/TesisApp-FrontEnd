@@ -43,7 +43,6 @@ function Publication(props){
     
     // Redireccionarme al perfil del usuario al clickear en el avatar de la publicacion
     const handleClick = (id) => {
-        // console.log("El id es: "+id);
         history.push('/'+id);
     };
 

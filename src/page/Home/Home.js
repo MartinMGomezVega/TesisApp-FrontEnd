@@ -38,7 +38,7 @@ export default function Home(props) {
   return (
     <BasicLayout className='home' setRefreshCheckLogin={setRefreshCheckLogin}>
       <div className='home__title'>
-        <h2>Inicio</h2>
+        <h2>Inicio<small> Publicaciones de mis seguidores</small></h2>
       </div>
       {/* Si publications tiene contenido, mostrar la lista de publicaciones */}
       {publications && <ListPublications publications={publications} />}

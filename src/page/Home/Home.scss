@@ -1,15 +1,21 @@
 @import "../../scss/index.scss";
 
 .home {
+  font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
   &__title {
     border-bottom: 1px solid $border-grey;
     padding: 15px;
 
     h2 {
       font-size: 22px;
-      font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
       margin-bottom: 0;
       font-weight: bold;
+    }
+
+    small {
+      font-size: 12px;
+      margin-left: 10px;
+      color: #979dac;
     }
   }
 
