@@ -36,6 +36,9 @@ export default function App() {
         draggable
         pauseOnHover
       />
+      <footer>
+        <p>ValkirIA © 2023 - Martin Gomez Vega</p>
+      </footer>
     </AuthContext.Provider>
   );
 }

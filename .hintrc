@@ -12,6 +12,7 @@
     "not safari <= 14.1"
   ],
   "hints": {
-    "compat-api/html": "off"
+    "compat-api/html": "off",
+    "detect-css-reflows/composite": "off"
   }
 }
