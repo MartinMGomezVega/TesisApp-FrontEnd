@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faHouseChimney, faUser, faUsers, faPowerOff, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHouseChimney, faUser, faUsers, faCommentAlt, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import PublicationModal from '../Modal/PublicationModal/PublicationModal';
 import { logoutAPI } from '../../API/auth';
 import useAuth from '../../hooks/useAuth';
 
 import LogoValkIALow from "../../assets/png/Valkia-lowV2.png"; // Valki acostada
-import LogoHead from "../../assets/png/logo-head.png";
+// import LogoHead from "../../assets/png/logo-head.png";
 
 import "./LeftMenu.scss";
 
@@ -41,6 +41,11 @@ export default function LeftMenu(props) {
             {/* Validacion del hook user: Si el parametro ._id no existe no lo ejecuta */}
             <Link to={`/${user?._id}`}> 
                 <FontAwesomeIcon icon={faUser} /> Perfil
+            </Link>
+
+            {/* Chat GPT - TalarIA */}
+            <Link to="/talaria"> 
+                <FontAwesomeIcon icon={faCommentAlt} /> TalarIA
             </Link>
 
             <Button onClick={() => setShowModal(true)}>Publicar</Button>
