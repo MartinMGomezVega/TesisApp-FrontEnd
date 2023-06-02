@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { faHouseChimney, faUser, faUsers, faCommentAlt, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import PublicationModal from '../Modal/PublicationModal/PublicationModal';
+import ValidationTokenGPTModal from '../Modal/ValidationTokenGPTModal/ValidationTokenGPTModal';
 import { logoutAPI } from '../../API/auth';
 import useAuth from '../../hooks/useAuth';
 
@@ -15,6 +16,7 @@ import "./LeftMenu.scss";
 export default function LeftMenu(props) {
     const { setRefreshCheckLogin } = props;
     const [showModal, setShowModal] = useState(false); // Mostrar el formulario de publicar
+    const [showModalKeyGPT, setShowModalKeyGPT] = useState(false); // Mostrar el formulario de Validar la Key de Open AI
     const user = useAuth(); // Exportacion de los datos del usuario
 
     const logout = () => {
@@ -43,11 +45,13 @@ export default function LeftMenu(props) {
                 <FontAwesomeIcon icon={faUser} /> Perfil
             </Link>
 
-            {/* Chat GPT - TalarIA */}
-            <Link to="/talaria"> 
-                <FontAwesomeIcon icon={faCommentAlt} /> TalarIA
-            </Link>
+            {/* Chat GPT - TalarIA */}          
+            <button className='Left_TalarIA' onClick={() => setShowModalKeyGPT(true)}>
+                <FontAwesomeIcon icon={faCommentAlt} /><span className="button-text-TalarIA">TalarIA</span>
+            </button>
+            <ValidationTokenGPTModal show={showModalKeyGPT} setShow={setShowModalKeyGPT} />
 
+            {/* Publicar */}
             <Button onClick={() => setShowModal(true)}>Publicar</Button>
             <PublicationModal show={showModal} setShow={setShowModal} />
 
