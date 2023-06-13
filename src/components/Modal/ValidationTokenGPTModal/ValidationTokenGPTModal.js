@@ -96,9 +96,7 @@ export default function ValidationTokenGPTModal(props) {
                         <OverlayTrigger placement="bottom" overlay={infoTooltip}>
                             <FontAwesomeIcon icon={faInfoCircle} className="info-icon" />
                         </OverlayTrigger>
-                        </p>
-                        
-                        {/* <p>Registrate en el sitio web de OpenAI -> Accede a la API -> Perfil -> View API Keys -> Create new secret key</p> */}
+                        </p>                        
                     </div>
                 </Form>
             </Modal.Body>
