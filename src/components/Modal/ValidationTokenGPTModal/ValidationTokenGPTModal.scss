@@ -21,16 +21,40 @@
     }
 }
 
+// Pasos a seguir en el INFO
+.step-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step-counter;
+}
+
+.step-list li {
+  margin-bottom: 10px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.step-list li::before {
+  content: counter(step-counter) '. ';
+  counter-increment: step-counter;
+}
+
 .validateKeyGPT-modal {
+    h2 {
+      font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+      font-weight: bold;
+      font-size: 35px;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+
     .modal-content {
       background-color: $background-grey-dark;
       border-radius: 25px;
       overflow: hidden;
-  
       .modal-header {
-        border-bottom: 1px solid $border-grey;
-        padding: 15px;
-  
+        border-bottom: 0px;
         .modal-title {
           svg {
             width: 15px;
@@ -42,37 +66,36 @@
             }
           }
         }
-      }
-  
-      .modal-body {
-        padding: 0;
-  
-        form {
-          textarea {
-            background-color: $background-grey-dark;
-            border: 0;
-            font-size: 20px;
-            color: $font-light;
-            padding: 10px 20px;
-            resize: none;
-            &:focus {
-              box-shadow: none;
-            }
-          }
-          .count {
-            margin: 15px;
-            &.error {
-              color: $danger;
-            }
-          }
-          button {
-            width: 100%;
-            height: 60px;
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 10px;
-          }
-        }
+      }      
+    }
+
+    button {
+      width: 100%;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 50px;
+
+      .spinner-border {
+        width: 25px;
+        height: 25px;
       }
     }
-  }
+
+    .container {
+      padding: 10px;
+    }
+    
+    .button-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .button-spacing {
+      width: 20px; /* Ajusta el espacio entre los botones según tus necesidades */
+    }
+
+    .info-icon{
+      margin-left: 10px;
+    }
+}

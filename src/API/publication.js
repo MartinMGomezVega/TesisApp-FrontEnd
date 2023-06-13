@@ -1,4 +1,4 @@
-import { API_HOST, TOKEN } from "../utils/constant";
+import { API_HOST } from "../utils/constant";
 import { getTokenAPI } from "./auth";
 
 // Recibe el mensaje de la publicacion para enviar a la bd
