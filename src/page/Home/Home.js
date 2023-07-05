@@ -61,9 +61,7 @@ export default function Home(props) {
   return (
     <BasicLayout className="home" setRefreshCheckLogin={setRefreshCheckLogin}>
       <div className="home__title">
-        <h2>
-          Inicio<small> Publicaciones</small>
-        </h2>
+        <h2>Inicio</h2>
       </div>
 
       {publications && <ListPublications publications={publications} />}
