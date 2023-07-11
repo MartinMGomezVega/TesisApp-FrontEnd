@@ -13,21 +13,64 @@
 
 .chatbot-messages {
     width: 100%;
-    max-height: 400px;
+    // max-height: 200px;
     overflow-y: auto;
     padding: 10px;
+    p {
+        word-wrap: break-word;
+        margin-top: 5px;
+    }
 }
 
-.chatbot-message {
+.chatbot-Info-bot{
+    display: flex;
+    // padding: 10px 20px;
+    background-color: $primary-dark-light;
     margin-bottom: 10px;
     padding: 8px;
     border-radius: 8px;
+   
+    .avatar {
+        width: 5%;
+        height: 8%;
+        img {
+            width: 60%;            
+            // border: 1px solid $background-dark-light;
+            // border-radius: 100%;
+        }
+      }
 }
 
-.bot {
+.chatbot-Info-user{
+    display: flex;
+    // padding: 10px 20px;
     background-color: $primary-dark-light;
-    text-align: left;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 8px;
+   
+    .user {
+        width: 5%;
+        height: 8%;
+        img {
+            width: 60%;            
+            // border: 1px solid $background-dark-light;
+            // border-radius: 100%;
+        }
+      }
+
 }
+
+// .chatbot-message {
+//     margin-bottom: 10px;
+//     padding: 8px;
+//     border-radius: 8px;
+// }
+
+// .bot {
+//     background-color: $primary-dark-light;
+//     text-align: left;
+// }
 
 .chatbot-input {
     display: flex;

@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import BasicLayout from '../../layout/BasicLayout/BasicLayout';
-import { Button, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { interactionChatGPT } from '../../API/apiOpenAI';
-import  SendIcon from '../../assets/png/send_icon.png'; // Importa el icono SVG del botón de enviar
-
-// import Error404VALKIRIA from "../../assets/png/Error404/404.png";
+import { getUserAPI } from '../../API/user';
+import SendIcon from '../../assets/png/send_icon.png'; // Importa el icono SVG del botón de enviar
+import LogoHead from "../../assets/png/logo-head.png";
+import AvatarNotFound from "../../assets/png/avatar-no-found.png";
+import { API_HOST } from '../../utils/constant';
 
 import "./TalarIA.scss";
 
 export default function TalarIA(props) {
   const { setRefreshCheckLogin } = props;
+  console.log(props);
 
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
+  const [avatarURL, setAvatarURL] = useState(null); //Guardar la url de la imagen
 
   useEffect(() => {
     const welcomeMessage = {
@@ -52,42 +56,71 @@ export default function TalarIA(props) {
     setLoading(false);
   };
 
-  const send = (
-    <Tooltip id="info-tooltip">
-    Enviar
-    </Tooltip>
-);
+  // Obtener el avatar del usuario
+  useEffect(() => {
+    getUserAPI("63e0754ee3bdaff40adae7ea").then((response) => {
+      setAvatarURL(
+        response?.avatar
+          ? `${API_HOST}/getAvatar?id=${response.id}`
+          : AvatarNotFound
+      );
+    });
+  }, []);
+
+
+  const renderMessages = () => {
+    return messages.map((message, index) => {
+      if (message.sender === 'user') {
+        return (
+          <div key={index} className="chatbot-Info-user">
+            <div className="user">
+              <img src={avatarURL} alt="User-Avatar" />
+            </div>
+            <div className="chatbot-content">
+              <p>{message.content}</p>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div key={index} className="chatbot-Info-bot">
+            <div className="avatar">
+            <img src={LogoHead} alt="Bot-Avatar" />
+            </div>
+            <div className="chatbot-content">
+              <p>{message.content}</p>
+            </div>
+          </div>
+        );
+      }
+    });
+  };
+
+  const sendTooltip = <Tooltip id="send-tooltip">Enviar</Tooltip>;
 
   return (
     <BasicLayout setRefreshCheckLogin={setRefreshCheckLogin}>
       <div className="chatbot-header">
         <h2>TalarIA</h2>
       </div>
-      <div className="chatbot-messages">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`chatbot-message ${message.sender === 'bot' ? 'bot' : 'user'}`}
-          >
-            {message.content}
-          </div>
-        ))}
-      </div>
+      <div className="chatbot-messages">{renderMessages()}</div>
       <div className="chatbot-input">
-          <input
-            type="text"
-            placeholder="Escribe un mensaje..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button onClick={sendMessage} disabled={loading}>
-            {loading ? <Spinner animation="border" size="sm" /> : 
-              <OverlayTrigger placement="bottom" overlay={send}>
-                <img src={SendIcon} alt ='app' />
-              </OverlayTrigger>
-            }
-          </button>
-        </div>
+        <input
+          type="text"
+          placeholder="Escribe un mensaje..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button onClick={sendMessage} disabled={loading}>
+          {loading ? (
+            <Spinner animation="border" size="sm" />
+          ) : (
+            <OverlayTrigger placement="bottom" overlay={sendTooltip}>
+              <img src={SendIcon} alt="Enviar" />
+            </OverlayTrigger>
+          )}
+        </button>
+      </div>
       {loading && (
         <div className="loading-spinner">
           <Spinner animation="border" role="status">
@@ -96,6 +129,5 @@ export default function TalarIA(props) {
         </div>
       )}
     </BasicLayout>
-    
   );
 }
