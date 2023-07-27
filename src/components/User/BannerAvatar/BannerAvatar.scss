@@ -34,8 +34,8 @@
       width: 150px;
 
       &:hover {
-        background-color: $primary;
-        opacity: 0.6;
+        background-color: $danger !important;
+        // opacity: 0.6;
       }
 
       &.unfollow {
@@ -53,5 +53,6 @@
         }
       }
     }
+
   }
 }

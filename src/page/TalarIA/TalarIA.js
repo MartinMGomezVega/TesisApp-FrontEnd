@@ -4,6 +4,7 @@ import BasicLayout from '../../layout/BasicLayout/BasicLayout';
 import { Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { interactionChatGPT } from '../../API/apiOpenAI';
 import { getUserAPI } from '../../API/user';
+// import ChatInput from './ChatInput';
 import SendIcon from '../../assets/png/send_icon.png'; // Importa el icono SVG del botón de enviar
 import LogoHead from "../../assets/png/logo-head.png";
 import AvatarNotFound from "../../assets/png/avatar-no-found.png";
@@ -13,7 +14,6 @@ import "./TalarIA.scss";
 
 export default function TalarIA(props) {
   const { setRefreshCheckLogin } = props;
-  console.log(props);
 
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -42,18 +42,20 @@ export default function TalarIA(props) {
 
     try {
       const botMessage = await interactionChatGPT(inputValue); // Utilizamos la función interactionChatGPT
+      // console.log("Respuesta:", botMessage)
 
       const botResponse = {
         content: botMessage,
         sender: 'bot',
       };
 
-      setMessages([...messages, botResponse]);
+      // Usar la función de actualización del estado basado en el estado anterior (prevState)
+      setMessages((prevMessages) => [...prevMessages, botResponse]);
+      setLoading(false);
     } catch (error) {
       console.error('Error:', error);
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   // Obtener el avatar del usuario
@@ -98,6 +100,14 @@ export default function TalarIA(props) {
 
   const sendTooltip = <Tooltip id="send-tooltip">Enviar</Tooltip>;
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      // Código 13 corresponde a la tecla "Enter"
+      e.preventDefault(); // Evita que se realice un salto de línea en el input
+      sendMessage();
+    }
+  };
+
   return (
     <BasicLayout setRefreshCheckLogin={setRefreshCheckLogin}>
       <div className="chatbot-header">
@@ -110,15 +120,12 @@ export default function TalarIA(props) {
           placeholder="Escribe un mensaje..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button onClick={sendMessage} disabled={loading}>
-          {loading ? (
-            <Spinner animation="border" size="sm" />
-          ) : (
-            <OverlayTrigger placement="bottom" overlay={sendTooltip}>
-              <img src={SendIcon} alt="Enviar" />
-            </OverlayTrigger>
-          )}
+          <OverlayTrigger placement="bottom" overlay={sendTooltip}>
+            <img src={SendIcon} alt="Enviar" />
+          </OverlayTrigger>
         </button>
       </div>
       {loading && (

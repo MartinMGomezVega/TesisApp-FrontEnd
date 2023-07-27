@@ -26,13 +26,12 @@ export function validateTokenGPT(apiKey) {
         });
 }
 
-// Recibe la key de la API de Open AI ingresada por el usuario
-export async function interactionChatGPT(message) {
-    const url = `${API_HOST}/validateAPIKey`;
+export async function interactionChatGPT(question) {
+    const url = `${API_HOST}/gpt`;
     const data = {
-        message
+        question
     }
-
+  
     const params = {
         method: "POST",
         headers: {
@@ -42,11 +41,12 @@ export async function interactionChatGPT(message) {
         body: JSON.stringify(data),
     };
 
-    try {
-        const response = await fetch(url, params);
-        const data = await response.json();
-        return data.message;
-    } catch (err) {
-        return err;
-    }
-}
+    return fetch(url, params)
+        .then(response => {
+            return response.json();
+        }) 
+        .catch(err => {
+            return err;
+        });
+  }
+  
