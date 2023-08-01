@@ -8,8 +8,8 @@ import ValidationTokenGPTModal from '../Modal/ValidationTokenGPTModal/Validation
 import { logoutAPI } from '../../API/auth';
 import useAuth from '../../hooks/useAuth';
 
-import LogoValkIALow from "../../assets/png/Valkia-lowV2.png"; // Valki acostada
-// import LogoHead from "../../assets/png/logo-head.png";
+// import LogoValkIALow from "../../assets/png/Valkia-lowV2.png"; // Valki acostada
+import ValkiriaSaludo from "../../assets/gif/gif-saludo.gif";
 
 import "./LeftMenu.scss";
 
@@ -27,7 +27,7 @@ export default function LeftMenu(props) {
     return (
         <div className='left-menu'>
             {/* Logo de la app */}
-            <img className='logo' src={LogoValkIALow} alt ='app' />
+            <img className='logo' src={ValkiriaSaludo} alt ='app' />
             
             {/* Inicio */}
             <Link to="/">
