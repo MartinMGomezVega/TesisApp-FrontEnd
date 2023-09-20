@@ -21,18 +21,18 @@ export default function ValidationTokenGPTModal(props) {
     const handleValidate = (e) => {
         e.preventDefault();
         // Acción a realizar al hacer clic en el botón "Validar"
-        console.log('Validar API Key:', key);
+        // console.log('Validar API Key:', key);
 
          // Enviar la Key al Back
          if(key.length > 0){
             validateTokenGPT(key)
                 .then(response => {
                     if(response.valid === true){
-                        console.log("Clave valida");
+                        // console.log("Clave valida");
                         toast.success("La clave es valida, ahora puede ir a TalarIA.");
                         setValidationResponse(true);
                     } else {
-                        console.log(response.valid)
+                        // console.log(response.valid)
                         toast.warning("La clave es invalida, por favor ingrese una clave valida.");
                     }
 

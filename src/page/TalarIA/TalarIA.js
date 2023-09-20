@@ -90,7 +90,8 @@ export default function TalarIA(props) {
             <img src={LogoHead} alt="Bot-Avatar" />
             </div>
             <div className="chatbot-content">
-              <p>{message.content}</p>
+              {renderMessageContent(message.content)}
+              {/* <p>{message.content}</p> */}
             </div>
           </div>
         );
@@ -137,4 +138,37 @@ export default function TalarIA(props) {
       )}
     </BasicLayout>
   );
+
+  
 }
+
+// Función para renderizar el contenido del mensaje, buscando y enlazando URLs
+const renderMessageContent = (content) => {
+  const urlRegex = /(https?:\/\/[^\s)]+)/g; // Expresión regular para buscar URLs sin paréntesis
+  const parts = content.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (part.match(urlRegex)) {
+      // Si es una URL, crear un enlace
+      const url = part;
+      return (
+        <a
+          key={index}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {url}
+        </a>
+      );
+    } else {
+      // Si no es una URL, mostrar el texto normal
+      return <span key={index}>{part}</span>;
+    }
+  });
+};
+
+
+
+
+
