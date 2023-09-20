@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faHouseChimney, faUser, faUsers, faCommentAlt, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHouseChimney, faUser, faUsers, faCommentAlt, faArrowRightFromBracket, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import PublicationModal from '../Modal/PublicationModal/PublicationModal';
 import ValidationTokenGPTModal from '../Modal/ValidationTokenGPTModal/ValidationTokenGPTModal';
 import { logoutAPI } from '../../API/auth';
@@ -50,6 +50,11 @@ export default function LeftMenu(props) {
                 <FontAwesomeIcon icon={faCommentAlt} /><span className="button-text-TalarIA">TalarIA</span>
             </button>
             <ValidationTokenGPTModal show={showModalKeyGPT} setShow={setShowModalKeyGPT} />
+
+            {/* jobs */}
+            <Link to="/jobs"> 
+                <FontAwesomeIcon icon={faBriefcase} /> Empleos
+            </Link>
 
             {/* Publicar */}
             <Button onClick={() => setShowModal(true)}>Publicar</Button>

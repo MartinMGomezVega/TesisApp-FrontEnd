@@ -1,0 +1,17 @@
+@import "../../scss/index.scss";
+
+.jobs {
+    font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+    &__title {
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2 {
+        font-size: 22px;
+        margin-bottom: 0;
+        font-weight: bold;
+        }
+    }
+}
