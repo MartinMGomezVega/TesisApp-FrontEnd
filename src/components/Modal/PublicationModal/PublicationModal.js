@@ -20,7 +20,7 @@ export default function PublicationModal(props) {
             addPublicationAPI(message)
                 .then(response => {
                     if(response?.code >= 200 && response?.code < 300){ // Funciona perfecto
-                        toast.success(response.message);
+                        // toast.success(response.message);
                         setShow(false);
                         window.location.reload();
                     }

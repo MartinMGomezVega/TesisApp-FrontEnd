@@ -11,8 +11,6 @@ function Jobs(props) {
     const [jobs, setJobs] = useState(null);
     const [showModalJobs, setShowModalJobs] = useState(false);
 
-    console.log(showModalJobs)
-
     return (
         <BasicLayout className='jobs' title="Jobs" setRefreshCheckLogin={setRefreshCheckLogin}>
             <div className='jobs__title'>

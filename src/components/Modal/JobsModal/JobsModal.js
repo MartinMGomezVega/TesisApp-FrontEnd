@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Modal, Form, Button, Dropdown, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { Close } from "../../../utils/Icons";
-import { addPublicationAPI } from '../../../API/publication';
+import { publishJobs } from '../../../API/publicationJob';
+import { values, size } from "lodash";
 
 import "./JobsModal.scss";
 
@@ -14,7 +15,43 @@ export default function JobsModal(props) {
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-        // Lógica para enviar el formulario a tu backend (falta implementar)
+
+        // Validacion del formulario
+        // Si el validCount es menor a la cantidad de campos del formulario, no es valido
+        let validCount = 0;
+        // Bucle para buscar cada uno de los items (some)
+        values(formData).some(value => {
+            value && validCount++
+            return null
+        });
+
+        if(validCount !== size(formData)) {
+            // Es correcto si es igual a la cantidad de campos (size(formData))
+            toast.warning("Completa todos los campos para publicar el empleo");
+        } else {
+            setJobFormLoading(true);
+            publishJobs(formData).then(response => {
+                console.log(response.message);
+                if(response.message){
+                    toast.warning(response.message); // Si hay errores en al publicarlo
+                } else {
+                    toast.success("¡Empleo publicado!");
+                    setShow(false); // Para cerrar el modal
+                    setFormData(initialFormValue()); // Inicializar los valores del formulario
+                    setTimeout(() => {
+                        window.location.href = '/jobs'; // Recargar la pagina de empleos
+                    }, 3000); // Espera 3 segundos antes de recargar la página
+                }
+            })
+            .catch(() => {
+                // Error al realizar el registro
+                toast.error("Error del servidor, intentelo más tarde.");
+            })
+            .finally(() => {
+                // Se ejecuta cuando finaliza el registro
+                setJobFormLoading(false); // Vuelve a su estado original el signo de cargando
+            })
+        }
     }
 
     const handleDropdownSelect = (fieldName, selectedValue) => {
@@ -24,7 +61,7 @@ export default function JobsModal(props) {
     const handleClose = () => {
         // Restablecer los valores del formulario al cerrar el modal
         setFormData(initialFormValue());
-        setShow(false);
+        setShow(false); // Para cerrar el modal
     }
 
     // Actualizar los datos mediante el formulario
@@ -47,12 +84,12 @@ export default function JobsModal(props) {
                 <Form onSubmit={onSubmit} onChange={onChange}>
                     <Form.Group>
                         <Form.Label>Nombre del puesto</Form.Label>
-                        <Form.Control type="text" placeholder="Añade el puesto que necesitas cubrir" name="jobTittle" value={formData.jobTittle} onChange={(e) => setFormData({ ...formData, jobTittle: e.target.value })} />
+                        <Form.Control type="text" placeholder="Añade el puesto que necesitas cubrir" name="position" defaultValue={formData.position} />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Empresa</Form.Label>
-                        <Form.Control type="text" placeholder="Nombre de la empresa ofrecente" name="company" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} />
+                        <Form.Control type="text" placeholder="Nombre de la empresa ofrecente" name="company" defaultValue={formData.company} />
                     </Form.Group>
 
                     <Form.Group>
@@ -71,14 +108,14 @@ export default function JobsModal(props) {
 
                     <Form.Group>
                         <Form.Label>Ubicación del empleo</Form.Label>
-                        <Form.Control type="text" placeholder="Ciudad, Región o País de la Empresa" name="jobLocation" value={formData.jobLocation} onChange={(e) => setFormData({ ...formData, jobLocation: e.target.value })} />
+                        <Form.Control type="text" placeholder="Ciudad, Región o País de la Empresa" name="jobLocation" defaultValue={formData.jobLocation} />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Tipo de empleo</Form.Label>
-                        <Dropdown onSelect={(selectedKey) => handleDropdownSelect("typeOfEmployment", selectedKey)}>
+                        <Dropdown onSelect={(selectedKey) => handleDropdownSelect("jobType", selectedKey)}>
                             <Dropdown.Toggle variant="light" id="employment-dropdown">
-                                {formData.typeOfEmployment || "Seleccionar..."}
+                                {formData.jobType || "Seleccionar..."}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item eventKey="Jornada completa">Jornada completa</Dropdown.Item>
@@ -88,7 +125,6 @@ export default function JobsModal(props) {
                                 <Dropdown.Item eventKey="Otro">Otro</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
@@ -103,10 +139,10 @@ export default function JobsModal(props) {
 // initialFormValue: Inicializar los campos del formulario de publicación del puesto laboral
 function initialFormValue() {
     return {
-        jobTittle: "",
+        position: "",
         company: "",
         typeOfWorkplace: "",
         jobLocation: "",
-        typeOfEmployment: ""
+        jobType: ""
     };
 }
