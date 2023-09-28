@@ -1,0 +1,81 @@
+@import "../../../scss/index.scss";
+
+.publication-job {
+  .modal-content {
+    background-color: $primary-dark;
+    border-radius: 25px;
+    overflow: hidden;
+    font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+    width:70%;
+    height: 100%;
+    margin: auto;
+
+    h2 {
+        font-weight: bold;
+        font-size: 30px;
+        text-align: center;
+    }    
+
+    .modal-header {
+      border-bottom: 1px solid $border-grey;
+      padding: 10px;
+
+      .modal-title {
+        // Cruz para cerrar el formulario
+        svg {
+          width: 15px;
+          height: 15px;
+          fill: $primary;
+          margin-left: 10px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .modal-body {
+        padding-bottom: 30px;
+        background-color: $primary-dark;
+        border-radius: 0;
+
+        .form-label {
+            margin-bottom:0px;
+            margin-top: 20px;
+        }
+
+        .form-control {
+            margin: 0px;
+        }
+
+        /* Personalizar el Dropdown Toggle */
+        #workplace-dropdown,
+        #employment-dropdown {
+            background-color: $primary-dark;
+            color:$font-grey;
+            border: 1px solid $border-grey;
+            text-align: left;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1.5px solid $primary;
+            margin:0%;
+            font-size: 1rem;
+            font-weight: normal;
+            padding: 1%;
+        }
+
+        /* Personalizar el Dropdown Menu */
+        .dropdown-menu {
+            background-color: $primary-dark-light;
+            a{
+                color:$font-grey;
+            }
+            a:hover{
+                background-color: $primary-dark-medium;
+                color:#fff;
+            }
+        }
+    }
+    
+  }
+}

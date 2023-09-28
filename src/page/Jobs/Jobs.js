@@ -11,10 +11,12 @@ function Jobs(props) {
     const [jobs, setJobs] = useState(null);
     const [showModalJobs, setShowModalJobs] = useState(false);
 
+    console.log(showModalJobs)
+
     return (
         <BasicLayout className='jobs' title="Jobs" setRefreshCheckLogin={setRefreshCheckLogin}>
-            {/* Titulo de la pagina */}
             <div className='jobs__title'>
+                {/* Titulo de la pagina */}
                 <h2>Empleos</h2>
                 {/* Publicar */}
                 <Button onClick={() => setShowModalJobs(true)}>Publicar empleo</Button>

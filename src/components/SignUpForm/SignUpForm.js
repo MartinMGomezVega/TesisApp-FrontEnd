@@ -14,7 +14,7 @@ export default function SignUpForm(props) {
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
     
         // Validacion del formulario
         // Si el validCount es menor a la cantidad de campos del formulario, no es valido
