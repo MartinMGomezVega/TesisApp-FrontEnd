@@ -127,6 +127,11 @@ export default function JobsModal(props) {
                         </Dropdown>
                     </Form.Group>
 
+                    <Form.Group>
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control as="textarea" row="4"  placeholder="Describa el puesto laboral" type='text' name="description" defaultValue={formData.description} />
+                    </Form.Group>
+
                     <Button variant="primary" type="submit">
                         {!jobFormLoading ? "Publicar" : <Spinner animation="border" />}
                     </Button>
@@ -143,6 +148,7 @@ function initialFormValue() {
         company: "",
         typeOfWorkplace: "",
         jobLocation: "",
-        jobType: ""
+        jobType: "",
+        description:""
     };
 }
