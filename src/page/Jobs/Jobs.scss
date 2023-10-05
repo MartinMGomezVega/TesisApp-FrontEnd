@@ -16,10 +16,6 @@
     }
 }
 
-.jobs__button {
-    margin-left: 10px; /* Puedes ajustar el valor para el espaciado entre "Empleos" y el botón */
-  }
-
 .publication-job {
     h2{
         font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
@@ -64,4 +60,19 @@
         }
       }
 
+}
+
+.load-more.btn.btn-primary {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  border: 0;
+
+  &:hover,
+  &focus {
+    background-color: transparent !important;
+    color: $primary;
   }
+}

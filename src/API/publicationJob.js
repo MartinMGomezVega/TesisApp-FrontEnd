@@ -26,3 +26,24 @@ export function publishJobs(publicationJob) {
             return err;
         })
 }
+
+// Obtener los posteos de los empleos
+// Como inicio o default es la pagina 1
+export function getJobsAPI(page = 1){
+    const url = `${API_HOST}/readPostsJobs?page=${page}`;
+
+    const params = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getTokenAPI()}`,
+        },
+      };
+    
+      return fetch(url, params)
+        .then((response) => {
+          return response.json();
+        })
+        .catch((err) => {
+          return err;
+        });
+}

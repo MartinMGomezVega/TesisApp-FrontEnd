@@ -70,7 +70,6 @@ function LeftComponent() {
 // RightComponent: Lado derecho de la pagina de SignInSingUp
 function RightComponent(props) {
   const { openModal, setShowModal, setRefreshCheckLogin } = props;
-  console.log(props)
   return (
       <Col className="signin-signup__right" xs= {6}>
           <div>
