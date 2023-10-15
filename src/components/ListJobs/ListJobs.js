@@ -55,7 +55,7 @@ function Job(props){
                 </div>
                 <div className='description'>
                     {/* {userInfo?.description}  */}
-                    Descripción
+                    Descripción +
                 </div>
 
 
