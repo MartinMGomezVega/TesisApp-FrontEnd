@@ -33,9 +33,20 @@
     }
 
     .description {
-      // font-weight: bold;
-      font-size: 16px;
-      color: $primary-clear;
+      font-size: 14px;
+
+      button{
+        color: $primary-clear;
+        padding: 0%;
+        background-color: transparent;
+        border: 0;
+
+        &:hover,
+        &focus {
+          background-color: transparent !important;
+          color: $primary;
+        }
+      }
     }
 
     .job_button {

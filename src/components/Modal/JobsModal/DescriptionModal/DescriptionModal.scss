@@ -1,0 +1,46 @@
+@import "../../../../scss/index.scss";
+
+.description-job {
+  .modal-content {
+    background-color: $primary-dark;
+    border-radius: 25px;
+    overflow: hidden;
+    font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
+    width:70%;
+    height: 100%;
+    margin: auto;
+
+    h2 {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid $border-grey;
+      padding: 10px;
+
+      .modal-title {
+        // Cruz para cerrar el formulario
+        svg {
+          width: 15px;
+          height: 15px;
+          fill: $primary;
+          margin-left: 10px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .modal-body {
+        padding-bottom: 30px;
+        background-color: $primary-dark;
+        border-radius: 0;
+        text-align: justify;
+
+    }
+  }
+}
