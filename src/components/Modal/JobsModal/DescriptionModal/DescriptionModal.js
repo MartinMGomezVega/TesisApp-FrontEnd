@@ -8,8 +8,6 @@ function DescriptionModal(props) {
     const { show, description, setShow } = props;
     const [formData, setFormData] = useState(initialFormValue());
 
-    console.log(props);
-
     const handleClose = () => {
         // Restablecer los valores del formulario al cerrar el modal
         setFormData(initialFormValue());
