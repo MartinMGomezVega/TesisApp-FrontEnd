@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
 import { map } from 'lodash';
 import moment from 'moment';
@@ -29,8 +28,6 @@ function Job(props){
     const [jobFormLoading, setJobFormLoading] = useState(false);
     const [descriptionModal, setDescriptionModal] = useState('');
     const [showModal, setShowModalJobs] = useState(false); // Modal para la descripción del empleo
-
-    console.log(props)
 
     // Obtener el avatar para mostrar en la publicacion
     useEffect(() => {

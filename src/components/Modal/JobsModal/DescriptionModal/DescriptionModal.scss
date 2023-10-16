@@ -6,7 +6,7 @@
     border-radius: 25px;
     overflow: hidden;
     font-family: 'Roboto Condensed', 'Share Tech Mono', sans-serif;
-    width:70%;
+    width:85%;
     height: 100%;
     margin: auto;
 
@@ -14,7 +14,7 @@
         font-weight: bold;
         font-size: 20px;
         text-align: center;
-        padding: 10px;
+        padding: 10px 0px 0px 0px;
     }
 
     .modal-header {
@@ -40,6 +40,7 @@
         background-color: $primary-dark;
         border-radius: 0;
         text-align: justify;
+        white-space: pre-line;
 
     }
   }

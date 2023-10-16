@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Close } from "../../../../utils/Icons";
 
 import './DescriptionModal.scss'

@@ -56,6 +56,7 @@ function Jobs(props) {
             typeOfWorkplace: job.typeOfWorkplace,
             jobLocation: job.jobLocation,
             jobType: job.jobType,
+            description: job.description,
             datePublication: job.datePublication,
             finished: job.finished
         }));
