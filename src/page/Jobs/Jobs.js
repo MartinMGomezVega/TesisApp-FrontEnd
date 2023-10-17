@@ -1,51 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
+import { isEmpty } from 'lodash';
 import BasicLayout from '../../layout/BasicLayout';
 import JobsModal from '../../components/Modal/JobsModal/JobsModal';
 import ListJobs from '../../components/ListJobs/ListJobs';
 import { getJobsAPI } from '../../API/publicationJob';
+import queryString from 'query-string';
+
 
 import "./Jobs.scss";
 
 function Jobs(props) {
-    const { setRefreshCheckLogin } = props; // history para actualizar la url
+    const { setRefreshCheckLogin, location, history } = props; // history para actualizar la url
     const [jobs, setJobs] = useState(null);
     const [showModalJobs, setShowModalJobs] = useState(false);
-    const [page, setPage] = useState(1);
-    const [loadingJobs, setLoadingJobs] = useState(false);
+    const params = useJobsQuery(location);
+
+    // Boton de buscar mas empleos
+    const [btnLoading, setBtnLoading] = useState(false);
 
     useEffect(() => {
-        loadJobs();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page]);
-
-    const loadJobs = () => {
-        setLoadingJobs(true);
-
-        getJobsAPI(page)
+        getJobsAPI(queryString.stringify(params))
         .then(response => {
-        if (response && response.length > 0) {
-            const formattedJobs = formatModel(response);
-
-            setJobs(prevJobs => {
-            if (prevJobs) {
-                return [...prevJobs, ...formattedJobs];
+            // eslint-disable-next-line eqeqeq
+            if(params.page == 1){
+                if(isEmpty(response)){
+                    setJobs([]); // Vacia los usuarios
+                } else {
+                    setJobs(response);
+                }
             } else {
-                return formattedJobs;
+                // Recargar los usuarios sin eliminar los que ya aparecen.
+                if(!response){
+                    // Es nulo o no tiene contenido
+                    setBtnLoading(0);
+                } else {
+                    // Si tiene valor el response, que muestre los usuarios que ya se ven mas los usuarios nuevos de la siguiente pagina
+                    setJobs([...jobs, ...response]);
+                    setBtnLoading(false);
+                    const formattedJobs = formatModel(response);
+                    setJobs(prevJobs => {
+                        if (prevJobs) {
+                            return [...prevJobs, ...formattedJobs];
+                        } else {
+                            return formattedJobs;
+                        }
+                    });
+                }
             }
-            });
-
-            setLoadingJobs(false);
-        } else {
-            setLoadingJobs(false);
-        }
         })
-        .catch(error => {
-        console.error(error);
-        setLoadingJobs(false);
+        .catch(() => {
+            setJobs([]);
         });
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location]);
 
     const formatModel = jobs => {
         return jobs.map(job => ({
@@ -62,9 +71,15 @@ function Jobs(props) {
         }));
     };
 
-    const handleLoadMore = () => {
-        setPage(prevPage => prevPage + 1);
-      };
+    const moreData = (type) => {
+        setBtnLoading(true);
+        const newPage = parseInt(params.page) + 1;
+
+        // Cambiar de pagina en la URL
+        history.push({
+            search: queryString.stringify({...params, page: newPage})
+        });
+    };
 
     return (
         <BasicLayout className='jobs' title="Jobs" setRefreshCheckLogin={setRefreshCheckLogin}>
@@ -80,26 +95,28 @@ function Jobs(props) {
             {jobs && <ListJobs jobs={jobs} />}
 
             {/* Botón para cargar más empleos (si hay) */}
-            <Button onClick={handleLoadMore} className="load-more">
-                {!loadingJobs ? (
-                loadingJobs !== 0 ? (
-                    'Obtener más empleos'
-                ) : (
-                    'No hay más empleos'
-                )
-                ) : (
-                <Spinner
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                />
-                )}
+            <Button onClick={moreData} className="load-more">
+                {
+                    !btnLoading ? (
+                        btnLoading !== 0 && "Cargar más empleos"    
+                    ) : (
+                        <Spinner as='span' animation='grow' size='sm' role='status' aria-hidden='true' />
+                    )
+                }
             </Button>
 
         </BasicLayout>
     );
+}
+
+// Obtener la url de /jobs
+function useJobsQuery(location) {
+    // page por default es 1, type por default es Follow y search por defualt es vacio
+    const { page = 1, search } = queryString.parse(
+        location.search
+    );
+
+    return { page, search };
 }
 
 export default withRouter(Jobs);
