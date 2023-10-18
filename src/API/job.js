@@ -47,3 +47,8 @@ export function getJobsAPI(page){
           return err;
         });
 }
+
+// Publicar la postulacion al empleo
+export function applyToJob(applyData){
+
+}

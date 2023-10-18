@@ -6,6 +6,7 @@ import { getUserAPI } from '../../API/user';
 import { API_HOST } from '../../utils/constant';
 import { replaceURLWithHTMLLinks } from '../../utils/functions';
 import DescriptionModal from '../../components/Modal/JobsModal/DescriptionModal'
+import Postulation from '../../components/Modal/JobsModal/Postulation';
 
 import "./ListJobs.scss";
 
@@ -27,7 +28,8 @@ function Job(props){
     const [userInfo, setUserInfo] = useState(null); // Guardar la informacion del usuario
     const [jobFormLoading, setJobFormLoading] = useState(false);
     const [descriptionModal, setDescriptionModal] = useState('');
-    const [showModal, setShowModalJobs] = useState(false); // Modal para la descripción del empleo
+    const [showDescription, setShowDescriptionJobs] = useState(false); // Modal para la descripción del empleo
+    const [showPostulationJobs, setShowPostulationJobs] = useState(false);
 
     // Obtener el avatar para mostrar en la publicacion
     useEffect(() => {
@@ -38,7 +40,7 @@ function Job(props){
 
     const showDescripcion = (descripcion) => {
         setDescriptionModal(descripcion);
-        setShowModalJobs(true);
+        setShowDescriptionJobs(true);
     };
 
     return (
@@ -50,9 +52,8 @@ function Job(props){
                 </div>
                 <div className='company'>
                     {job?.company}
-                    <Button variant="primary" type="submit" className='job_button'>Postularme
-                        {/* {!jobFormLoading ? "Postularme" : <Spinner animation="border" />} */}
-                    </Button>
+                    <Button variant="primary" type="submit" className='job_button' onClick={() => setShowPostulationJobs(true)}>Postularme</Button>
+                    <Postulation show={showPostulationJobs} setShow={setShowPostulationJobs} />
                 </div>
                 <div className='jobLocation'>
                     {job?.jobLocation} - {job?.typeOfWorkplace} - {job?.jobType}
@@ -60,7 +61,7 @@ function Job(props){
                 <div className='description'>
                     {/* {userInfo?.description}  */}
                     <button onClick={() => showDescripcion(job?.description)}>Ver descripción</button>
-                    <DescriptionModal show={showModal} setShow={setShowModalJobs} description={job?.description} />
+                    <DescriptionModal show={showDescription} setShow={setShowDescriptionJobs} description={job?.description} />
                 </div>
 
                 <div>

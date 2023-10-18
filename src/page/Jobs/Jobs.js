@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash';
 import BasicLayout from '../../layout/BasicLayout';
 import JobsModal from '../../components/Modal/JobsModal/JobsModal';
 import ListJobs from '../../components/ListJobs/ListJobs';
-import { getJobsAPI } from '../../API/publicationJob';
+import { getJobsAPI } from '../../API/job';
 import queryString from 'query-string';
 
 

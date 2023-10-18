@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Form, Button, Dropdown, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { Close } from "../../../utils/Icons";
-import { publishJobs } from '../../../API/publicationJob';
+import { publishJobs } from '../../../API/job';
 import { values, size } from "lodash";
 
 import "./JobsModal.scss";
