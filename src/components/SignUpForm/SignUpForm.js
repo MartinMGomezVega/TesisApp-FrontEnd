@@ -73,10 +73,10 @@ export default function SignUpForm(props) {
                 <Form.Group>
                     <Row>
                         <Col>
-                            <Form.Control type="text" placeholder="Name" name="name" defaultValue={formData.name} />
+                            <Form.Control type="text" placeholder="Nombre" name="name" defaultValue={formData.name} />
                         </Col>
                         <Col>
-                            <Form.Control type="text" placeholder="Surname" name="surname" defaultValue={formData.surname} />
+                            <Form.Control type="text" placeholder="Apellido" name="surname" defaultValue={formData.surname} />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -88,10 +88,10 @@ export default function SignUpForm(props) {
                 <Form.Group>
                 <Row>
                     <Col>
-                        <Form.Control type="password" placeholder="Password" name="password" defaultValue={formData.password} />
+                        <Form.Control type="password" placeholder="Contraseña" name="password" defaultValue={formData.password} />
                     </Col>
                     <Col>
-                        <Form.Control type="password" placeholder="Repeat password" name="repeatPassword" defaultValue={formData.repeatPassword} />
+                        <Form.Control type="password" placeholder="Repetir contraseña" name="repeatPassword" defaultValue={formData.repeatPassword} />
                     </Col>
                 </Row>
                 </Form.Group>

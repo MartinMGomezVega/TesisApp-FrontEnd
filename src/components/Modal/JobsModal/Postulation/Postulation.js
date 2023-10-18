@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Form, Button, Dropdown, Spinner } from 'react-bootstrap';
+import { Modal, Form, Button, Dropdown, Spinner, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { Close } from "../../../../utils/Icons";
 import { applyToJob } from '../../../../API/job';
@@ -89,16 +89,19 @@ export default function Postulation(props) {
             
             <Modal.Body>
                 <Form onSubmit={onSubmit} onChange={onChange}>
-                    {/* Name */}
                     <Form.Group>
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="text" placeholder="" name="name" defaultValue={formData.name} />
-                    </Form.Group>
-
-                    {/* Surname */}
-                    <Form.Group>
-                        <Form.Label>Apellido</Form.Label>
-                        <Form.Control type="text" placeholder="" name="surname" defaultValue={formData.surname} />
+                        <Row>
+                            {/* Name */}
+                            <Col>
+                                <Form.Label>Nombre</Form.Label>
+                                <Form.Control type="text" placeholder="" name="name" defaultValue={formData.name} />
+                            </Col>
+                            {/* Surname */}
+                            <Col>
+                                <Form.Label>Apellido</Form.Label>
+                                <Form.Control type="text" placeholder="" name="surname" defaultValue={formData.surname} />
+                            </Col>
+                        </Row>
                     </Form.Group>
 
                     {/* Country code */}
@@ -110,75 +113,75 @@ export default function Postulation(props) {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item eventKey="Albania (+355)">Albania (+355)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Alemania">Alemania (+49)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Andorra">Andorra (+376)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Argentina">Argentina (+54)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Australia">Australia (+61)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Austria">Austria (+43)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Bélgica">Bélgica (+32)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Bielorrusia">Bielorrusia (+375)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Bolivia">Bolivia (+591)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Bosnia y Herzegovina">Bosnia y Herzegovina (+387)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Brasil">Brasil (+55)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Bulgaria">Bulgaria (+359)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Canadá">Canadá (+1)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Chipre">Chipre (+357)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Chile">Chile (+56)</Dropdown.Item>
-                                <Dropdown.Item eventKey="China">China (+86)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Colombia">Colombia (+57)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Costa de Marfil">Costa de Marfil (+225)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Costa Rica">Costa Rica (+506)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Croacia">Croacia (+385)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Dinamarca">Dinamarca (+45)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Ecuador">Ecuador (+593)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Egipto">Egipto (+20)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Emiratos Árabes Unidos">Emiratos Árabes Unidos (+971)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Eslovaquia">Eslovaquia (+421)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Eslovenia">Eslovenia (+386)</Dropdown.Item>
-                                <Dropdown.Item eventKey="España">España (+34)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Estados Unidos">Estados Unidos (+1)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Estonia">Estonia (+372)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Finlandia">Finlandia (+358)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Francia">Francia (+33)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Grecia">Grecia (+30)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Guatemala">Guatemala (+502)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Honduras">Honduras (+504)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Hungría">Hungría (+36)</Dropdown.Item>
-                                <Dropdown.Item eventKey="India">India (+91)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Indonesia">Indonesia (+62)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Irlanda">Irlanda (+353)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Islandia">Islandia (+354)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Israel">Israel (+972)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Italia">Italia (+39)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Japón">Japón (+81)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Kenia">Kenia (+254)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Marruecos">Marruecos (+212)</Dropdown.Item>
-                                <Dropdown.Item eventKey="México">México (+52)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Moldavia">Moldavia (+373)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Montenegro">Montenegro (+382)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Nicaragua">Nicaragua (+505)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Nigeria">Nigeria (+234)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Noruega">Noruega (+47)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Nueva Zelanda">Nueva Zelanda (+64)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Países Bajos">Países Bajos (+31)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Panamá">Panamá (+507)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Paraguay">Paraguay (+595)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Perú">Perú (+51)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Polonia">Polonia (+48)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Portugal">Portugal (+351)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Reino Unido">Reino Unido (+44)</Dropdown.Item>
-                                <Dropdown.Item eventKey="República Checa">República Checa (+420)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Rumania">Rumania (+40)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Rusia">Rusia (+7)</Dropdown.Item>
-                                <Dropdown.Item eventKey="San Marino">San Marino (+378)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Serbia">Serbia (+381)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Sudáfrica">Sudáfrica (+27)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Suecia">Suecia (+46)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Suiza">Suiza (+41)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Ucrania">Ucrania (+380)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Uruguay">Uruguay (+598)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Vaticano">Vaticano (+39)</Dropdown.Item>
-                                <Dropdown.Item eventKey="Venezuela">Venezuela (+58)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Alemania (+49)">Alemania (+49)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Andorra (+376)">Andorra (+376)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Argentina (+54)">Argentina (+54)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Australia (+61)">Australia (+61)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Austria (+43)">Austria (+43)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Bélgica (+32)">Bélgica (+32)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Bielorrusia (+375)">Bielorrusia (+375)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Bolivia (+591)">Bolivia (+591)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Bosnia y Herzegovina (+387)">Bosnia y Herzegovina (+387)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Brasil (+55)">Brasil (+55)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Bulgaria (+359)">Bulgaria (+359)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Canadá (+1)">Canadá (+1)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Chipre (+357)">Chipre (+357)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Chile (+56)">Chile (+56)</Dropdown.Item>
+                                <Dropdown.Item eventKey="China (+86)">China (+86)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Colombia (+57)">Colombia (+57)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Costa de Marfil (+225)">Costa de Marfil (+225)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Costa Rica (+506)">Costa Rica (+506)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Croacia (+385)">Croacia (+385)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Dinamarca (+45)">Dinamarca (+45)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Ecuador (+593)">Ecuador (+593)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Egipto (+20)">Egipto (+20)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Emiratos Árabes Unidos (+971)">Emiratos Árabes Unidos (+971)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Eslovaquia (+421)">Eslovaquia (+421)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Eslovenia (+386)">Eslovenia (+386)</Dropdown.Item>
+                                <Dropdown.Item eventKey="España (+34)">España (+34)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Estados Unidos (+1)">Estados Unidos (+1)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Estonia (+372)">Estonia (+372)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Finlandia (+358)">Finlandia (+358)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Francia (+33)">Francia (+33)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Grecia (+30)">Grecia (+30)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Guatemala (+502)">Guatemala (+502)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Honduras (+504)">Honduras (+504)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Hungría (+36)">Hungría (+36)</Dropdown.Item>
+                                <Dropdown.Item eventKey="India (+91)">India (+91)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Indonesia (+62)">Indonesia (+62)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Irlanda (+353)">Irlanda (+353)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Islandia (+354)">Islandia (+354)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Israel (+972)">Israel (+972)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Italia (+39)">Italia (+39)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Japón (+81)">Japón (+81)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Kenia (+254)">Kenia (+254)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Marruecos (+212)">Marruecos (+212)</Dropdown.Item>
+                                <Dropdown.Item eventKey="México (+52)">México (+52)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Moldavia (+373)">Moldavia (+373)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Montenegro (+382)">Montenegro (+382)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Nicaragua (+505)">Nicaragua (+505)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Nigeria (+234)">Nigeria (+234)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Noruega (+47)">Noruega (+47)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Nueva Zelanda (+64)">Nueva Zelanda (+64)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Países Bajos (+31)">Países Bajos (+31)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Panamá (+507)">Panamá (+507)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Paraguay (+595)">Paraguay (+595)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Perú (+51)">Perú (+51)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Polonia (+48)">Polonia (+48)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Portugal (+351)">Portugal (+351)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Reino Unido (+44)">Reino Unido (+44)</Dropdown.Item>
+                                <Dropdown.Item eventKey="República Checa (+420)">República Checa (+420)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Rumania (+40)">Rumania (+40)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Rusia (+7)">Rusia (+7)</Dropdown.Item>
+                                <Dropdown.Item eventKey="San Marino (+378)">San Marino (+378)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Serbia (+381)">Serbia (+381)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Sudáfrica (+27)">Sudáfrica (+27)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Suecia (+46)">Suecia (+46)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Suiza (+41)">Suiza (+41)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Ucrania (+380)">Ucrania (+380)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Uruguay (+598">Uruguay (+598)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Vaticanoo (+39">Vaticano (+39)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Venezuela (+58)">Venezuela (+58)</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Form.Group>
