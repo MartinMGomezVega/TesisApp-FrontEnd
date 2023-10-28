@@ -29,30 +29,30 @@ export default function Postulation(props) {
 
         if(validCount !== size(formData)) {
             // Es correcto si es igual a la cantidad de campos (size(formData))
-            toast.warning("Completa todos los campos para postularte al empleo");
+            toast.warning("Completa todos los campos para postularte al empleo.");
         } else {
             setJobPostulationFormLoading(true);
-            // applyToJob(formData).then(response => {
-            //     console.log(response.message);
-            //     if(response.message){
-            //         toast.warning(response.message); // Si hay errores al postularse
-            //     } else {
-            //         toast.success("¡Postulación enviada!");
-            //         setShow(false); // Para cerrar el modal
-            //         setFormData(initialFormValue()); // Inicializar los valores del formulario
-            //         setTimeout(() => {
-            //             window.location.href = '/jobs'; // Recargar la pagina de empleos
-            //         }, 3000); // Espera 3 segundos antes de recargar la página
-            //     }
-            // })
-            // .catch(() => {
-            //     // Error al realizar el registro
-            //     toast.error("Error del servidor, intentelo más tarde.");
-            // })
-            // .finally(() => {
-            //     // Se ejecuta cuando finaliza el registro
-            //     setJobPostulationFormLoading(false); // Vuelve a su estado original el signo de cargando
-            // })
+            applyToJob(formData).then(response => {
+                console.log(response.message);
+                if(response.message){
+                    toast.warning(response.message); // Si hay errores al postularse
+                } else {
+                    toast.success("¡Postulación enviada!");
+                    setShow(false); // Para cerrar el modal
+                    setFormData(initialFormValue()); // Inicializar los valores del formulario
+                    setTimeout(() => {
+                        window.location.href = '/jobs'; // Recargar la pagina de empleos
+                    }, 3000); // Espera 3 segundos antes de recargar la página
+                }
+            })
+            .catch(() => {
+                // Error al realizar el registro
+                toast.error("Error del servidor, intentelo más tarde.");
+            })
+            .finally(() => {
+                // Se ejecuta cuando finaliza el registro
+                setJobPostulationFormLoading(false); // Vuelve a su estado original el signo de cargando
+            })
         }
     }
 

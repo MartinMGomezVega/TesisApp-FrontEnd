@@ -50,5 +50,25 @@ export function getJobsAPI(page){
 
 // Publicar la postulacion al empleo
 export function applyToJob(applyData){
+    const url = `${API_HOST}/savePostulationJob`;
 
+    const params = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getTokenAPI()}`
+        },
+        body: JSON.stringify(applyData), // Enviar los datos directamente
+    };
+
+    return fetch(url, params)
+        .then(response => {
+            if(response.status >= 200 && response.status < 300 ){
+                return { code: response.status };
+            }
+            return { code: 500, message: "Error del servidor."};
+        })
+        .catch(err => {
+            return err;
+        })
 }
