@@ -132,6 +132,11 @@ export default function JobsModal(props) {
                         <Form.Control as="textarea" row="4"  placeholder="Describa el puesto laboral" type='text' name="description" defaultValue={formData.description} />
                     </Form.Group>
 
+                    <Form.Group>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type='email' placeholder="Describa el puesto laboral" name="emailRecruiter" defaultValue={formData.emailRecruiter} />
+                    </Form.Group>
+
                     <Button variant="primary" type="submit">
                         {!jobFormLoading ? "Publicar" : <Spinner animation="border" />}
                     </Button>
@@ -149,6 +154,7 @@ function initialFormValue() {
         typeOfWorkplace: "",
         jobLocation: "",
         jobType: "",
-        description:""
+        description:"",
+        emailRecruiter: "",
     };
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button, Dropdown, Spinner, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { Close } from "../../../../utils/Icons";
@@ -8,11 +8,20 @@ import { values, size } from "lodash";
 import "./Postulation.scss";
 
 export default function Postulation(props) {
-    const { show, setShow } = props;
+    const { show, setShow, idJob } = props;
     const [formData, setFormData] = useState(initialFormValue());
     const [jobPostulationFormLoading, setJobPostulationFormLoading] = useState(false);
 
-    console.log(props)
+    useEffect(() => {
+        // Actualizar el estado formData con el valor de idJob cuando cambie
+        if (idJob !== null) {
+            setFormData({
+                ...formData,
+                idJob: idJob
+            });
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [idJob]);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -31,8 +40,9 @@ export default function Postulation(props) {
             // Es correcto si es igual a la cantidad de campos (size(formData))
             toast.warning("Completa todos los campos para postularte al empleo.");
         } else {
+            const fileInput = document.getElementById("cvInput");
             setJobPostulationFormLoading(true);
-            applyToJob(formData).then(response => {
+            applyToJob(formData, fileInput).then(response => {
                 console.log(response.message);
                 if(response.message){
                     toast.warning(response.message); // Si hay errores al postularse
@@ -88,7 +98,7 @@ export default function Postulation(props) {
             <h2>Solicitar empleo</h2>
             
             <Modal.Body>
-                <Form onSubmit={onSubmit} onChange={onChange}>
+                <Form onSubmit={onSubmit} onChange={onChange} encType="multipart/form-data">
                     <Form.Group>
                         <Row>
                             {/* Name */}
@@ -204,6 +214,7 @@ export default function Postulation(props) {
                         <input
                             type="file"
                             name="cv"
+                            id="cvInput"
                             accept=".pdf"
                             onChange={handleFileUpload}
                             className="cv-upload-input"
@@ -234,6 +245,7 @@ function initialFormValue() {
         mobilePhone: "",
         email: "",
         describe:"",
-        cv: null
+        cv: null,
+        idJob: ""
     };
 }

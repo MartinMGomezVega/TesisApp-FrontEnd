@@ -49,26 +49,39 @@ export function getJobsAPI(page){
 }
 
 // Publicar la postulacion al empleo
-export function applyToJob(applyData){
+export function applyToJob(applyData, fileInput) {
     const url = `${API_HOST}/savePostulationJob`;
+    const formData = new FormData();
+
+    // Agrega los campos de formulario uno por uno
+    formData.append("name", applyData.name);
+    formData.append("surname", applyData.surname);
+    formData.append("countryCode", applyData.countryCode);
+    formData.append("mobilePhone", applyData.mobilePhone);
+    formData.append("email", applyData.email);
+    formData.append("describe", applyData.describe);
+    formData.append("cv", fileInput.files[0]);
+    formData.append("idJob", applyData.idJob);
+
+    console.log("cv", fileInput.files[0]);
+
 
     const params = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${getTokenAPI()}`
         },
-        body: JSON.stringify(applyData), // Enviar los datos directamente
+        body: formData
     };
 
     return fetch(url, params)
         .then(response => {
-            if(response.status >= 200 && response.status < 300 ){
+            if (response.status >= 200 && response.status < 300) {
                 return { code: response.status };
             }
-            return { code: 500, message: "Error del servidor."};
+            return { code: 500, message: "Error del servidor." };
         })
         .catch(err => {
             return err;
-        })
+        });
 }

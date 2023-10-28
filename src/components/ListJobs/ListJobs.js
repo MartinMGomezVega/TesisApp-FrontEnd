@@ -30,8 +30,8 @@ function Job(props){
     const [descriptionModal, setDescriptionModal] = useState('');
     const [showDescription, setShowDescriptionJobs] = useState(false); // Modal para la descripción del empleo
     const [showPostulationJobs, setShowPostulationJobs] = useState(false);
+    const [selectedJobId, setSelectedJobId] = useState(null);
 
-    // Obtener el avatar para mostrar en la publicacion
     useEffect(() => {
         getUserAPI(job.userId).then((response) => {
           setUserInfo(response);
@@ -43,6 +43,11 @@ function Job(props){
         setShowDescriptionJobs(true);
     };
 
+    const handleApplyClick = (idJob) => {
+        setSelectedJobId(idJob);
+        setShowPostulationJobs(true);
+    };
+
     return (
         <div className='job'>
             <div>
@@ -52,8 +57,15 @@ function Job(props){
                 </div>
                 <div className='company'>
                     {job?.company}
-                    <Button variant="primary" type="submit" className='job_button' onClick={() => setShowPostulationJobs(true)}>Postularme</Button>
-                    <Postulation show={showPostulationJobs} setShow={setShowPostulationJobs} />
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        className='job_button'
+                        onClick={() => handleApplyClick(job?._id)}
+                    >
+                        Postularme
+                    </Button>
+                    <Postulation show={showPostulationJobs} setShow={setShowPostulationJobs} idJob={selectedJobId} />
                 </div>
                 <div className='jobLocation'>
                     {job?.jobLocation} - {job?.typeOfWorkplace} - {job?.jobType}
