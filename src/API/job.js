@@ -49,7 +49,7 @@ export function getJobsAPI(page){
 }
 
 // Publicar la postulacion al empleo
-export function applyToJob(applyData, fileInput) {
+export function applyToJob(applyData, fileInputRef) {
     const url = `${API_HOST}/savePostulationJob`;
     const formData = new FormData();
 
@@ -60,10 +60,10 @@ export function applyToJob(applyData, fileInput) {
     formData.append("mobilePhone", applyData.mobilePhone);
     formData.append("email", applyData.email);
     formData.append("describe", applyData.describe);
-    formData.append("cv", fileInput.files[0]);
+    formData.append("cv", fileInputRef.current.files[0]);
     formData.append("idJob", applyData.idJob);
 
-    console.log("cv", fileInput.files[0]);
+    // console.log("cv", fileInput.files[0]);
 
 
     const params = {

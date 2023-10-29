@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import { Modal, Form, Button, Dropdown, Spinner, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { Close } from "../../../../utils/Icons";
@@ -11,6 +11,7 @@ export default function Postulation(props) {
     const { show, setShow, idJob } = props;
     const [formData, setFormData] = useState(initialFormValue());
     const [jobPostulationFormLoading, setJobPostulationFormLoading] = useState(false);
+    const fileInputRef = useRef(null); // Crear la referencia
 
     useEffect(() => {
         // Actualizar el estado formData con el valor de idJob cuando cambie
@@ -40,9 +41,9 @@ export default function Postulation(props) {
             // Es correcto si es igual a la cantidad de campos (size(formData))
             toast.warning("Completa todos los campos para postularte al empleo.");
         } else {
-            const fileInput = document.getElementById("cvInput");
+            // const fileInput = document.getElementById("cvInput");
             setJobPostulationFormLoading(true);
-            applyToJob(formData, fileInput).then(response => {
+            applyToJob(formData, fileInputRef).then(response => {
                 console.log(response.message);
                 if(response.message){
                     toast.warning(response.message); // Si hay errores al postularse
@@ -77,8 +78,9 @@ export default function Postulation(props) {
     }
 
     const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        setFormData({ ...formData, cv: file });
+        // Obtener el archivo seleccionado
+        const selectedFile = e.target.files[0];
+        console.log("Selected file:", selectedFile);
     };
 
     // Actualizar los datos mediante el formulario
@@ -214,7 +216,7 @@ export default function Postulation(props) {
                         <input
                             type="file"
                             name="cv"
-                            id="cvInput"
+                            ref={fileInputRef} // Asignar la referencia
                             accept=".pdf"
                             onChange={handleFileUpload}
                             className="cv-upload-input"
